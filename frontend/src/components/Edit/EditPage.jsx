@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./edit.css";
 import Input from "../InputFields/Input";
+import { updateUser } from "../../redux/apiRequets";
 import { useDispatch, useSelector } from "react-redux";
-import { update } from "../../redux/userSlice";
 const EditPage = (props) => {
     const { setEdit } = props;
 
@@ -19,14 +19,15 @@ const EditPage = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setEdit(false);
-        const updateUser = {
+        const updatedUser = {
             name: name,
             age: age,
             about: about,
             avaUrl: url,
-            themeColor: theme
+            themeColor: theme,
         };
-        dispatch(update(updateUser));
+        updateUser(updatedUser, dispatch);
+        // dispatch(update(updateUser));
     };
     const avaUrl = [
         "https://preview.redd.it/rrz3hmsxcll71.png?width=640&crop=smart&auto=webp&s=87cc5ed38d8f088ef9fffef7a4c5756b64309d6a",
